@@ -26,7 +26,7 @@ class CupertinoSettingsSection extends StatelessWidget {
     if (header != null) {
       columnChildren.add(DefaultTextStyle(
         style: TextStyle(
-          color: CupertinoColors.inactiveGray,
+          color: CupertinoColors.systemGrey,
           fontSize: 13.5,
           letterSpacing: -0.5,
         ),
@@ -56,8 +56,8 @@ class CupertinoSettingsSection extends StatelessWidget {
       Container(
         decoration: BoxDecoration(
           color: Theme.of(context).brightness == Brightness.light
-              ? CupertinoColors.white
-              : iosTileDarkColor,
+              ? CupertinoColors.systemGrey
+              : CupertinoColors.systemGrey,
           border: Border(
             top: const BorderSide(
               color: borderColor,

@@ -76,7 +76,7 @@ class CupertinoSettingsItemState extends State<CupertinoSettingsItem> {
       iconThemeData = IconThemeData(
         color: widget.enabled
             ? _iconColor(theme, tileTheme)
-            : CupertinoColors.inactiveGray,
+            : CupertinoColors.systemGrey,
       );
 
     Widget leadingIcon;
@@ -109,7 +109,7 @@ class CupertinoSettingsItemState extends State<CupertinoSettingsItem> {
           style: widget.labelTextStyle ??
               TextStyle(
                 fontSize: 16,
-                color: widget.enabled ? null : CupertinoColors.inactiveGray,
+                color: widget.enabled ? null : CupertinoColors.systemGrey,
               ),
         ),
       );
@@ -159,7 +159,7 @@ class CupertinoSettingsItemState extends State<CupertinoSettingsItem> {
               value: widget.switchValue,
               activeColor: widget.enabled
                   ? (widget.switchActiveColor ?? Theme.of(context).accentColor)
-                  : CupertinoColors.inactiveGray,
+                  : CupertinoColors.systemGrey,
               onChanged: !widget.enabled
                   ? null
                   : (bool value) {
@@ -184,7 +184,7 @@ class CupertinoSettingsItemState extends State<CupertinoSettingsItem> {
                 textAlign: TextAlign.end,
                 style: widget.valueTextStyle ??
                     TextStyle(
-                      color: CupertinoColors.inactiveGray,
+                      color: CupertinoColors.systemGrey,
                       fontSize: 16,
                     ),
               ),
@@ -295,11 +295,11 @@ class CupertinoSettingsItemState extends State<CupertinoSettingsItem> {
   Color calculateBackgroundColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.light
           ? pressed
-              ? iosPressedTileColorLight
-              : Colors.white
+              ? iosPressedTileColorDark
+              : iosTileColor
           : pressed
               ? iosPressedTileColorDark
-              : iosTileDarkColor;
+              : iosTileColor;
 
   Color _iconColor(ThemeData theme, ListTileTheme tileTheme) {
     if (tileTheme?.selectedColor != null) {

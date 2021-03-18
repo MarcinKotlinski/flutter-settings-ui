@@ -1,11 +1,14 @@
 import 'dart:ui';
 
-const Color mediumGrayColor = Color(0xFFC7C7CC);
-const Color itemPressedColor = Color(0xFFD9D9D9);
-const Color borderColor = Color(0xFFBCBBC1);
+import 'package:flutter/cupertino.dart';
+
+const Color mediumGrayColor = Color.fromRGBO(49, 44, 51, 1);
+const Color itemPressedColor = Color.fromRGBO(255, 239, 15, 1);
+const Color borderColor = CupertinoColors.systemGrey;
 const Color borderLightColor = Color.fromRGBO(49, 44, 51, 1);
 const Color backgroundGray = Color.fromRGBO(255, 208, 0, 1);
-const Color groupSubtitle = Color(0xFF777777);
+const Color groupSubtitle = Color.fromRGBO(28, 28, 30, 1);
 const Color iosTileDarkColor = Color.fromRGBO(28, 28, 30, 1);
-const Color iosPressedTileColorDark = Color.fromRGBO(44, 44, 46, 1);
-const Color iosPressedTileColorLight = Color.fromRGBO(230, 229, 235, 1);
+const Color iosTileColor = Color.fromRGBO(255, 208, 0, 1);
+const Color iosPressedTileColorDark = Color.fromRGBO(255, 239, 15, 1);
+const Color iosPressedTileColorLight = Color.fromRGBO(255, 239, 15, 1);
