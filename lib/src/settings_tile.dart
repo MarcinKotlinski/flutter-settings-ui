@@ -119,21 +119,23 @@ class SettingsTile extends StatelessWidget {
         label: semanticsLabel,
         hint: semanticsHint,
         value: semanticsValue,
-        child: CupertinoSettingsItem(
-          enabled: enabled,
-          type: SettingsItemType.modal,
-          label: title,
-          labelMaxLines: titleMaxLines,
-          value: subtitle,
-          trailing: trailing,
-          iosChevron: iosChevron,
-          iosChevronPadding: iosChevronPadding,
-          hasDetails: false,
-          leading: leading,
-          onPress: onTapFunction(context),
-          labelTextStyle: titleTextStyle,
-          subtitleTextStyle: subtitleTextStyle,
-          valueTextStyle: subtitleTextStyle,
+        child: ExcludeSemantics(
+          child: CupertinoSettingsItem(
+            enabled: enabled,
+            type: SettingsItemType.modal,
+            label: title,
+            labelMaxLines: titleMaxLines,
+            value: subtitle,
+            trailing: trailing,
+            iosChevron: iosChevron,
+            iosChevronPadding: iosChevronPadding,
+            hasDetails: false,
+            leading: leading,
+            onPress: onTapFunction(context),
+            labelTextStyle: titleTextStyle,
+            subtitleTextStyle: subtitleTextStyle,
+            valueTextStyle: subtitleTextStyle,
+          ),
         ),
       );
     }
@@ -171,20 +173,22 @@ class SettingsTile extends StatelessWidget {
         label: semanticsLabel,
         hint: semanticsHint,
         value: semanticsValue,
-        child: ListTile(
-          title: Text(title, style: titleTextStyle),
-          subtitle: subtitle != null
-              ? Text(
-                  subtitle,
-                  style: subtitleTextStyle,
-                  maxLines: subtitleMaxLines,
-                  overflow: TextOverflow.ellipsis,
-                )
-              : null,
-          leading: leading,
-          enabled: enabled,
-          trailing: trailing,
-          onTap: onTapFunction(context),
+        child: ExcludeSemantics(
+          child: ListTile(
+            title: Text(title, style: titleTextStyle),
+            subtitle: subtitle != null
+                ? Text(
+                    subtitle,
+                    style: subtitleTextStyle,
+                    maxLines: subtitleMaxLines,
+                    overflow: TextOverflow.ellipsis,
+                  )
+                : null,
+            leading: leading,
+            enabled: enabled,
+            trailing: trailing,
+            onTap: onTapFunction(context),
+          ),
         ),
       );
     }
