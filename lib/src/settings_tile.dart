@@ -12,6 +12,7 @@ class SettingsTile extends StatelessWidget {
   final String title;
   final String semanticsLabel;
   final String semanticsHint;
+  final String semanticsValue;
   final int titleMaxLines;
   final String subtitle;
   final int subtitleMaxLines;
@@ -34,6 +35,7 @@ class SettingsTile extends StatelessWidget {
     @required this.title,
     this.semanticsLabel,
     this.semanticsHint,
+    this.semanticsValue,
     this.titleMaxLines,
     this.subtitle,
     this.subtitleMaxLines,
@@ -59,6 +61,7 @@ class SettingsTile extends StatelessWidget {
     @required this.title,
     this.semanticsLabel,
     this.semanticsHint,
+    this.semanticsValue,
     this.titleMaxLines,
     this.subtitle,
     this.subtitleMaxLines,
@@ -93,6 +96,7 @@ class SettingsTile extends StatelessWidget {
       return Semantics(
         label: semanticsLabel,
         hint: semanticsHint,
+        value: semanticsValue,
         child: CupertinoSettingsItem(
           enabled: enabled,
           type: SettingsItemType.toggle,
@@ -114,6 +118,7 @@ class SettingsTile extends StatelessWidget {
       return Semantics(
         label: semanticsLabel,
         hint: semanticsHint,
+        value: semanticsValue,
         child: CupertinoSettingsItem(
           enabled: enabled,
           type: SettingsItemType.modal,
@@ -139,6 +144,7 @@ class SettingsTile extends StatelessWidget {
       return Semantics(
         label: semanticsLabel,
         hint: semanticsHint,
+        value: semanticsValue,
         child: SwitchListTile(
           secondary: leading,
           value: switchValue,
@@ -164,6 +170,7 @@ class SettingsTile extends StatelessWidget {
       return Semantics(
         label: semanticsLabel,
         hint: semanticsHint,
+        value: semanticsValue,
         child: ListTile(
           title: Text(title, style: titleTextStyle),
           subtitle: subtitle != null
