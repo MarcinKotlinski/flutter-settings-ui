@@ -17,6 +17,8 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
         sections: [
           SettingsSection(tiles: [
             SettingsTile(
+              semanticsLabel: "Język angielski",
+              semanticsHint: "Kliknij aby wybrać język angielski",
               title: "English",
               trailing: trailingWidget(0),
               onTap: () {

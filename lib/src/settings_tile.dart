@@ -10,6 +10,8 @@ enum _SettingsTileType { simple, switchTile }
 
 class SettingsTile extends StatelessWidget {
   final String title;
+  final String semanticsLabel;
+  final String semanticsHint;
   final int titleMaxLines;
   final String subtitle;
   final int subtitleMaxLines;
@@ -30,6 +32,8 @@ class SettingsTile extends StatelessWidget {
   const SettingsTile({
     Key key,
     @required this.title,
+    this.semanticsLabel,
+    this.semanticsHint,
     this.titleMaxLines,
     this.subtitle,
     this.subtitleMaxLines,
@@ -53,6 +57,8 @@ class SettingsTile extends StatelessWidget {
   const SettingsTile.switchTile({
     Key key,
     @required this.title,
+    this.semanticsLabel,
+    this.semanticsHint,
     this.titleMaxLines,
     this.subtitle,
     this.subtitleMaxLines,
@@ -84,79 +90,95 @@ class SettingsTile extends StatelessWidget {
 
   Widget iosTile(BuildContext context) {
     if (_tileType == _SettingsTileType.switchTile) {
-      return CupertinoSettingsItem(
-        enabled: enabled,
-        type: SettingsItemType.toggle,
-        label: title,
-        labelMaxLines: titleMaxLines,
-        leading: leading,
-        subtitle: subtitle,
-        subtitleMaxLines: subtitleMaxLines,
-        switchValue: switchValue,
-        onToggle: onToggle,
-        labelTextStyle: titleTextStyle,
-        switchActiveColor: switchActiveColor,
-        subtitleTextStyle: subtitleTextStyle,
-        valueTextStyle: subtitleTextStyle,
-        trailing: trailing,
+      return Semantics(
+        label: semanticsLabel,
+        hint: semanticsHint,
+        child: CupertinoSettingsItem(
+          enabled: enabled,
+          type: SettingsItemType.toggle,
+          label: title,
+          labelMaxLines: titleMaxLines,
+          leading: leading,
+          subtitle: subtitle,
+          subtitleMaxLines: subtitleMaxLines,
+          switchValue: switchValue,
+          onToggle: onToggle,
+          labelTextStyle: titleTextStyle,
+          switchActiveColor: switchActiveColor,
+          subtitleTextStyle: subtitleTextStyle,
+          valueTextStyle: subtitleTextStyle,
+          trailing: trailing,
+        ),
       );
     } else {
-      return CupertinoSettingsItem(
-        enabled: enabled,
-        type: SettingsItemType.modal,
-        label: title,
-        labelMaxLines: titleMaxLines,
-        value: subtitle,
-        trailing: trailing,
-        iosChevron: iosChevron,
-        iosChevronPadding: iosChevronPadding,
-        hasDetails: false,
-        leading: leading,
-        onPress: onTapFunction(context),
-        labelTextStyle: titleTextStyle,
-        subtitleTextStyle: subtitleTextStyle,
-        valueTextStyle: subtitleTextStyle,
+      return Semantics(
+        label: semanticsLabel,
+        hint: semanticsHint,
+        child: CupertinoSettingsItem(
+          enabled: enabled,
+          type: SettingsItemType.modal,
+          label: title,
+          labelMaxLines: titleMaxLines,
+          value: subtitle,
+          trailing: trailing,
+          iosChevron: iosChevron,
+          iosChevronPadding: iosChevronPadding,
+          hasDetails: false,
+          leading: leading,
+          onPress: onTapFunction(context),
+          labelTextStyle: titleTextStyle,
+          subtitleTextStyle: subtitleTextStyle,
+          valueTextStyle: subtitleTextStyle,
+        ),
       );
     }
   }
 
   Widget androidTile(BuildContext context) {
     if (_tileType == _SettingsTileType.switchTile) {
-      return SwitchListTile(
-        secondary: leading,
-        value: switchValue,
-        activeColor: switchActiveColor,
-        onChanged: enabled ? onToggle : null,
-        title: Text(
-          title,
-          style: titleTextStyle,
-          maxLines: titleMaxLines,
-          overflow: TextOverflow.ellipsis,
+      return Semantics(
+        label: semanticsLabel,
+        hint: semanticsHint,
+        child: SwitchListTile(
+          secondary: leading,
+          value: switchValue,
+          activeColor: switchActiveColor,
+          onChanged: enabled ? onToggle : null,
+          title: Text(
+            title,
+            style: titleTextStyle,
+            maxLines: titleMaxLines,
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: subtitle != null
+              ? Text(
+                  subtitle,
+                  style: subtitleTextStyle,
+                  maxLines: subtitleMaxLines,
+                  overflow: TextOverflow.ellipsis,
+                )
+              : null,
         ),
-        subtitle: subtitle != null
-            ? Text(
-                subtitle,
-                style: subtitleTextStyle,
-                maxLines: subtitleMaxLines,
-                overflow: TextOverflow.ellipsis,
-              )
-            : null,
       );
     } else {
-      return ListTile(
-        title: Text(title, style: titleTextStyle),
-        subtitle: subtitle != null
-            ? Text(
-                subtitle,
-                style: subtitleTextStyle,
-                maxLines: subtitleMaxLines,
-                overflow: TextOverflow.ellipsis,
-              )
-            : null,
-        leading: leading,
-        enabled: enabled,
-        trailing: trailing,
-        onTap: onTapFunction(context),
+      return Semantics(
+        label: semanticsLabel,
+        hint: semanticsHint,
+        child: ListTile(
+          title: Text(title, style: titleTextStyle),
+          subtitle: subtitle != null
+              ? Text(
+                  subtitle,
+                  style: subtitleTextStyle,
+                  maxLines: subtitleMaxLines,
+                  overflow: TextOverflow.ellipsis,
+                )
+              : null,
+          leading: leading,
+          enabled: enabled,
+          trailing: trailing,
+          onTap: onTapFunction(context),
+        ),
       );
     }
   }
