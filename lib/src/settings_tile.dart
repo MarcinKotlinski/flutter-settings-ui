@@ -13,6 +13,7 @@ class SettingsTile extends StatelessWidget {
   final String semanticsLabel;
   final String semanticsHint;
   final String semanticsValue;
+  final bool visibility;
   final int titleMaxLines;
   final String subtitle;
   final int subtitleMaxLines;
@@ -36,6 +37,7 @@ class SettingsTile extends StatelessWidget {
     this.semanticsLabel,
     this.semanticsHint,
     this.semanticsValue,
+    this.visibility = true,
     this.titleMaxLines,
     this.subtitle,
     this.subtitleMaxLines,
@@ -62,6 +64,7 @@ class SettingsTile extends StatelessWidget {
     this.semanticsLabel,
     this.semanticsHint,
     this.semanticsValue,
+    this.visibility = true,
     this.titleMaxLines,
     this.subtitle,
     this.subtitleMaxLines,
@@ -97,21 +100,24 @@ class SettingsTile extends StatelessWidget {
         label: semanticsLabel,
         hint: semanticsHint,
         value: semanticsValue,
-        child: CupertinoSettingsItem(
-          enabled: enabled,
-          type: SettingsItemType.toggle,
-          label: title,
-          labelMaxLines: titleMaxLines,
-          leading: leading,
-          subtitle: subtitle,
-          subtitleMaxLines: subtitleMaxLines,
-          switchValue: switchValue,
-          onToggle: onToggle,
-          labelTextStyle: titleTextStyle,
-          switchActiveColor: switchActiveColor,
-          subtitleTextStyle: subtitleTextStyle,
-          valueTextStyle: subtitleTextStyle,
-          trailing: trailing,
+        child: Visibility(
+          visible: visibility,
+          child: CupertinoSettingsItem(
+            enabled: enabled,
+            type: SettingsItemType.toggle,
+            label: title,
+            labelMaxLines: titleMaxLines,
+            leading: leading,
+            subtitle: subtitle,
+            subtitleMaxLines: subtitleMaxLines,
+            switchValue: switchValue,
+            onToggle: onToggle,
+            labelTextStyle: titleTextStyle,
+            switchActiveColor: switchActiveColor,
+            subtitleTextStyle: subtitleTextStyle,
+            valueTextStyle: subtitleTextStyle,
+            trailing: trailing,
+          ),
         ),
       );
     } else {
@@ -119,7 +125,8 @@ class SettingsTile extends StatelessWidget {
         label: semanticsLabel,
         hint: semanticsHint,
         value: semanticsValue,
-        child: ExcludeSemantics(
+        child: Visibility(
+          visible: visibility,
           child: CupertinoSettingsItem(
             enabled: enabled,
             type: SettingsItemType.modal,
@@ -147,25 +154,28 @@ class SettingsTile extends StatelessWidget {
         label: semanticsLabel,
         hint: semanticsHint,
         value: semanticsValue,
-        child: SwitchListTile(
-          secondary: leading,
-          value: switchValue,
-          activeColor: switchActiveColor,
-          onChanged: enabled ? onToggle : null,
-          title: Text(
-            title,
-            style: titleTextStyle,
-            maxLines: titleMaxLines,
-            overflow: TextOverflow.ellipsis,
+        child: Visibility(
+          visible: visibility,
+          child: SwitchListTile(
+            secondary: leading,
+            value: switchValue,
+            activeColor: switchActiveColor,
+            onChanged: enabled ? onToggle : null,
+            title: Text(
+              title,
+              style: titleTextStyle,
+              maxLines: titleMaxLines,
+              overflow: TextOverflow.ellipsis,
+            ),
+            subtitle: subtitle != null
+                ? Text(
+                    subtitle,
+                    style: subtitleTextStyle,
+                    maxLines: subtitleMaxLines,
+                    overflow: TextOverflow.ellipsis,
+                  )
+                : null,
           ),
-          subtitle: subtitle != null
-              ? Text(
-                  subtitle,
-                  style: subtitleTextStyle,
-                  maxLines: subtitleMaxLines,
-                  overflow: TextOverflow.ellipsis,
-                )
-              : null,
         ),
       );
     } else {
@@ -173,7 +183,8 @@ class SettingsTile extends StatelessWidget {
         label: semanticsLabel,
         hint: semanticsHint,
         value: semanticsValue,
-        child: ExcludeSemantics(
+        child: Visibility(
+          visible: visibility,
           child: ListTile(
             title: Text(title, style: titleTextStyle),
             subtitle: subtitle != null
